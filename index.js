@@ -71,10 +71,19 @@ $(function () {
 		}
 	})
 	*/
-	// Request AJAX mediante Promises
-	$.ajax('http://api.tvmaze.com/shows')
-		.then(function (shows) {
-			$container.find('.loader').remove();
-			renderShows(shows);
-		});
+	if(!localStorage.shows) {
+		// Request AJAX mediante Promises
+		$.ajax('http://api.tvmaze.com/shows')
+			.then(function (shows) {
+				$container.find('.loader').remove();
+				// En localStorage se guardan Strings
+				// Conversion de JSON a String
+				localStorage.shows = JSON.stringify(shows);
+				renderShows(shows);
+			})
+	} else {
+		$container.find('.loader').remove();
+		// Conversion de String a JSON
+		renderShows(JSON.parse(localStorage.shows));
+	}
 })
