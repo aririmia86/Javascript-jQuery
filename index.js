@@ -10,6 +10,8 @@ $(function () {
 					'</div>' +
 				'</article>';
 	function renderShows (shows) {
+		// forEach recibe por parametro una funcion que se
+		// llama por cada elemento
 		shows.forEach(function (show){
 			var article = template
 				.replace(':name:', show.name)
@@ -46,6 +48,9 @@ $(function () {
 				success: function (res, textStatus, xhr){
 					console.log(res);
 					$loader.remove();
+					// map llama a la función callback provista
+					// una vez por elemento de un array, en orden,
+					// y construye un nuevo array con los resultados
 					var shows = res.map(function (element) {
 						return element.show;
 					})
@@ -54,6 +59,7 @@ $(function () {
 				}
 			})
 		})
+	/*
 	// Request AJAX a API de TVMaze
 	// Metodo por defecto GET
 	$.ajax('http://api.tvmaze.com/shows', {
@@ -64,4 +70,11 @@ $(function () {
 			renderShows(shows);
 		}
 	})
+	*/
+	// Request AJAX mediante Promises
+	$.ajax('http://api.tvmaze.com/shows')
+		.then(function (shows) {
+			$container.find('.loader').remove();
+			renderShows(shows);
+		});
 })
