@@ -15,6 +15,7 @@ body{
 	position: fixed;
 	background-color: #2ecc71;
 	text-align: center;
+	z-index: 10;
 }
 
 #app-header h1 {
@@ -53,6 +54,15 @@ body{
 	padding: 16px;
 	background-color: white;
 	margin-bottom: 16px;
+	position: relative;
+}
+
+.tv-show.liked {
+	background-color: #E08283;
+}
+
+.tv-show.liked:hover {
+	background-color: #F1A9A0;
 }
 
 .tv-show:hover{
@@ -69,6 +79,22 @@ body{
 
 .tv-show .info{
 	width: 75%;
+}
+
+.tv-show button.like{
+	background: transparent;
+	border: 0;
+	outline: 0;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 22px;
+	cursor: pointer;
+	transition: all 1s ease;
+}
+
+.tv-show.liked button.like{
+	font-size: 40px;
 }
 
 .left{

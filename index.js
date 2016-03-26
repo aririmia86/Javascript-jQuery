@@ -7,6 +7,7 @@ $(function () {
 					'<div class="right info">' +
 						'<h1>:name:</h1>' +
 						'<p>:summary:</p>' +
+						'<button class="like">Heart</button>'
 					'</div>' +
 				'</article>';
 	function renderShows (shows) {
@@ -23,8 +24,7 @@ $(function () {
 			// Lo ocultamos por defecto
 			$article.hide();
 			// Seleccion de jQuery
-			$container.append($article);
-			$article.show(1500);
+			$container.append($article.fadeIn(2000));
 		})
 	}
 	/**
@@ -86,4 +86,16 @@ $(function () {
 		// Conversion de String a JSON
 		renderShows(JSON.parse(localStorage.shows));
 	}
+	// Burbujeo de eventos para capturar los eventos sobre los
+	// botones de me gusta
+	$container.on('click', 'button.like', function  (argument) {
+		// This en este contexto es el boton sobre el que se
+		// hizo like
+		var $this = $(this);
+		// Animacion con jQuery
+		//$this.animate({'fontSize': '30px'},'fast');
+		// Closest busca en el DOM el elemento padre que cumple
+		// la condicion
+		$this.closest('.tv-show').toggleClass('liked');
+	});
 })
