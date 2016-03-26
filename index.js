@@ -1,3 +1,8 @@
+/**
+* Module dependencies
+*/
+var $ = require('jquery');
+
 $(function () {
 	var $container = $('#app-body').find('.tv-shows');
 	var template = '<article class="tv-show">' + 
