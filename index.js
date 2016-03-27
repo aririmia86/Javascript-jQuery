@@ -1,7 +1,9 @@
 /**
 * Module dependencies
 */
-var $ = require('jquery');
+//var $ = require('jquery');
+//ES2015
+import $ from 'jquery';
 
 $(function () {
 	var $container = $('#app-body').find('.tv-shows');
